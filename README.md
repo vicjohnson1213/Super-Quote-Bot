@@ -11,10 +11,10 @@ Once you have an app and an access token for it, you can create a `config.js` fi
 ```javascript
 // config.js
 module.exports = {
-    consumerKey: 'Your consumer key',
-    consumerSecret: 'Your consumer secret',
-    accessToken: 'Your app\'s access token,
-    accessTokenSecret: 'Your app\'s access token secret'
+    consumerKey: "Your consumer key",
+    consumerSecret: "Your consumer secret",
+    accessToken: "Your app's access token",
+    accessTokenSecret: "Your app's access token secre"
 };
 ```
 
