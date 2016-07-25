@@ -2,7 +2,7 @@ var cron = require('cron'),
     quotes = require('./quotes');
     twitter = require('./twitter');
 
-var cron = cron.job('11 11 11 * * *', () => {
+var cron = cron.job('11 11 * * * *', () => {
     var quote = quotes.next();
 
     if (!quote) {
