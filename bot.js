@@ -1,5 +1,5 @@
 var cron = require('cron'),
-    quotes = require('./quotes/quotes');
+    quotes = require('./quotes');
     twitter = require('./twitter');
 
 var cron = cron.job('11 11 11 * * *', () => {
@@ -10,7 +10,7 @@ var cron = cron.job('11 11 11 * * *', () => {
         return;
     }
 
-    var tweet = `${quote.quote}`;
+    var tweet = `"${quote.quote}"`;
 
     if (quote.quote.length + quote.author.length + 3 <= 140) {
         tweet += ` - ${quote.author}`;
