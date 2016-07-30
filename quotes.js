@@ -6,7 +6,11 @@ function readQuotes() {
     return JSON.parse(quotes);
 }
 
-function nextQuote() {
+function saveQuotes(quotes) {
+    fs.writeFileSync('./quotes/quotes.json', JSON.stringify(quotes));
+}
+
+function nextQuote(opts) {
     var quotes = readQuotes();
 
     if (quotes.length === 0) 
@@ -15,7 +19,9 @@ function nextQuote() {
     var idx = Math.floor(Math.random() * quotes.length)
         chosen = quotes.splice(idx, 1);
 
-    fs.writeFileSync('./quotes/quotes.json', JSON.stringify(quotes));
+    if (opts && opts.save) {
+        saveQuotes(quotes);
+    }
 
     return chosen[0];
 }

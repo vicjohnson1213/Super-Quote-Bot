@@ -1,23 +1,27 @@
-var cron = require('cron'),
+var schedule = require('node-schedule'),
     quotes = require('./quotes');
-    twitter = require('./twitter');
+    twitter = require('./twitter'),
+    winston = require('winston');
 
-var cron = cron.job('11 11 * * * *', () => {
+winston.add(winston.transports.File, { filename: 'log.log' });
+winston.remove(winston.transports.Console);
+
+winston.info('Starting the application.');
+
+var sched = schedule.scheduleJob({ minute: 11, hour: 11 }, () => {
     var quote = quotes.next();
 
+    winston.info(`chose quote "${quote.quote}"`);
+
     if (!quote) {
-        cron.stop();
+        winston.info('no quote found.');
+        sched.cancel();
         return;
     }
 
-    var tweet = `"${quote.quote}"`;
+    var tweet = `"${quote.quote}" - ${quote.author}`;
 
-    if (quote.quote.length + quote.author.length + 3 <= 140) {
-        tweet += ` - ${quote.author}`;
-    }
-
+    winston.info('about to tweet');
     twitter.tweet(tweet);
-
-}, () => {}, true, 'America/Denver');
-
-cron.start();
+    winston.info('just tweeted');
+});

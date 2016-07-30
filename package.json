@@ -9,7 +9,7 @@
   "author": "Victor Johnson <victor@victorjohnson.io>",
   "license": "MIT",
   "dependencies": {
-    "cron": "^1.1.0",
+    "node-schedule": "^1.1.1",
     "node-twitterbot": "^0.2.2"
   }
 }
