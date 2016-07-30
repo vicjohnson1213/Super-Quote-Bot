@@ -9,7 +9,7 @@ var bot = new TwitterBot({
 });
 
 module.exports = {
-    tweet: (message) => {
+    tweet: function(message) {
         bot.tweet(message);
     }
 };
