@@ -38,6 +38,16 @@ npm install
 node bot.js
 ```
 
+### Options
+
+#### --save
+
+If this option is present, the remaining quotes will be written back to the file so duplicates can be avoided.  This option defaults to `false`, so any quotes used will remain.
+
+#### --src /path/to/quotes/source
+
+If this option is present, a different source for quotes can be used.  This option defaults to `quotes/quotes.json`.
+
 ## Scheduling
 
 You can also schedule this to run at specified intervals or at a specific time each day using your operating systems cron jobs (for unix operating systems).  Viewing and editing cron jobs is done via the `crontab` command.
