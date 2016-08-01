@@ -1,27 +1,34 @@
 var fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    merge = require('merge');
 
-function readQuotes() {
-    var quotes = fs.readFileSync(path.join(__dirname, 'quotes/quotes.json'));
+function readQuotes(src) {
+    var quotes = fs.readFileSync(path.join(__dirname, src));
 
     return JSON.parse(quotes);
 }
 
-function saveQuotes(quotes) {
-    fs.writeFileSync(path.join(__dirname, 'quotes/quotes.json', JSON.stringify(quotes)));
+function saveQuotes(quotes, src) {
+    fs.writeFileSync(path.join(__dirname, src), JSON.stringify(quotes));
 }
 
 function nextQuote(opts) {
-    var quotes = readQuotes();
+    opts = merge({
+        save: false,
+        src: 'quotes/quotes.json'
+    }, opts);
+
+
+    var quotes = readQuotes(opts.src);
 
     if (quotes.length === 0) 
         return null;
         
-    var idx = Math.floor(Math.random() * quotes.length)
+    var idx = Math.floor(Math.random() * quotes.length),
         chosen = quotes.splice(idx, 1);
 
-    if (opts && opts.save) {
-        saveQuotes(quotes);
+    if (opts.save) {
+        saveQuotes(quotes, opts.src);
     }
 
     return chosen[0];

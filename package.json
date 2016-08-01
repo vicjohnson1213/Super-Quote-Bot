@@ -9,6 +9,8 @@
   "author": "Victor Johnson <victor@victorjohnson.io>",
   "license": "MIT",
   "dependencies": {
+    "merge": "^1.2.0",
+    "minimist": "^1.2.0",
     "node-twitterbot": "^0.2.2"
   }
 }
