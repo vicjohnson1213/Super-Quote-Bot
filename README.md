@@ -18,15 +18,43 @@ module.exports = {
 };
 ```
 
-Note that the bot is set up to tweet every day at 11:00 Mountain time.  This can be changed using [`cron` syntax](https://en.wikipedia.org/wiki/Cron).
+Then, for testing you can add a temporary quotes file at `quotes/quotes.json`.  An example would look like the following:
+
+```json
+[
+    {
+        "author": "Abraham Lincoln",
+        "quote": "You can't believe everything you read on the internet."
+    }
+]
+```
 
 ## Running
 
-once that is done, you can start the app with the following commands:
+Once you have your authentication tokens, you can send a quote by running the following commands:
 
 ```bash
 npm install
-npm start
+node bot.js
+```
+
+## Scheduling
+
+You can also schedule this to run at specified intervals or at a specific time each day using your operating systems cron jobs (for unix operating systems).  Viewing and editing cron jobs is done via the `crontab` command.
+
+#### Viewing Cron Jobs
+
+Cron jobs can be viewed by running `crontab -l`.  This just prints the contents of the cron file.
+
+#### Editng Cron Jobs
+
+Cron jobs can be added/removed/edited using the `crontab -e` command.  The first time you run this it will ask you which editor you prefer to use, select one and the cron file will open.  Take a loot at [this tutorial](http://kvz.io/blog/2007/07/29/schedule-tasks-on-linux-using-crontab/) to familarize yourself with cron.
+
+To use cron for this Twitter-bot, add a line to your cron file that looks like the following:
+
+```crontab
+# Runs the command ad 11:11 every morning.
+11 11 * * * /path/to/node /path/to/super-quote-bot/bot.js
 ```
 
 ## License
