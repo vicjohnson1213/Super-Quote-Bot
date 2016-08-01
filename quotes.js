@@ -1,13 +1,14 @@
-var fs = require('fs');
+var fs = require('fs'),
+    path = require('path');
 
 function readQuotes() {
-    var quotes = fs.readFileSync('./quotes/quotes.json');
+    var quotes = fs.readFileSync(path.join(__dirname, 'quotes/quotes.json'));
 
     return JSON.parse(quotes);
 }
 
 function saveQuotes(quotes) {
-    fs.writeFileSync('./quotes/quotes.json', JSON.stringify(quotes));
+    fs.writeFileSync(path.join(__dirname, 'quotes/quotes.json', JSON.stringify(quotes)));
 }
 
 function nextQuote(opts) {
