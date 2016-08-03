@@ -1,15 +1,15 @@
-var TwitterBot = require('node-twitterbot').TwitterBot,
+var Twitter = require('twitter'),
     config = require('./config');
 
-var bot = new TwitterBot({
+var bot = new Twitter({
     'consumer_secret': config.consumerSecret,
     'consumer_key': config.consumerKey,
-    'access_token': config.accessToken,
+    'access_token_key': config.accessToken,
     'access_token_secret': config.accessTokenSecret
 });
 
 module.exports = {
     tweet: (message) => {
-        bot.tweet(message);
+        bot.post('statuses/update', {status: message}, (error, tweet, response) => {});
     }
 };
